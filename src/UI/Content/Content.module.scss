@@ -1,4 +1,5 @@
+@import "../../SCSS/mixins.scss";
 .content {
     grid-area: main;
-    background-color: green;
+    @include border_style();
 }

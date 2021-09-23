@@ -1,4 +1,15 @@
+@import "../../SCSS/mixins.scss";
 .header {
     grid-area: header;
-    background-color: aqua;
+    @include border_style();
+    display: flex;
+    justify-content: space-between
+}
+.header a {
+    @include icon_link();
+}
+.link_wrapper {
+    display: flex;
+    text-align: center;
+    align-items: center;
 }

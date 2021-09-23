@@ -1,4 +1,5 @@
+@import "../../SCSS/mixins.scss";
 .footer {
     grid-area: footer;
-    background-color: aqua;
+    @include border_style();
 }

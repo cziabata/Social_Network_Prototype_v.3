@@ -1,4 +1,9 @@
-.nav {
+@import "../../SCSS/mixins.scss";
+.navbar {
     grid-area: nav;
-    background-color: red;
+    @include border_style();
 }
+.navbar a {
+    @include icon_link();
+}
+
