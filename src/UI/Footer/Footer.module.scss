@@ -3,3 +3,9 @@
     grid-area: footer;
     @include border_style();
 }
+.footer a {
+    @include icon_link();
+}
+.link_wrapper {
+    @include link_wrapper();
+}

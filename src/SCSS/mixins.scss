@@ -26,3 +26,8 @@
     border: 1px groove #8745B0;
     border-radius: 10px;
 }
+@mixin link_wrapper() {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}

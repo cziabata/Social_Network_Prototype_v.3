@@ -9,7 +9,5 @@
     @include icon_link();
 }
 .link_wrapper {
-    display: flex;
-    text-align: center;
-    align-items: center;
+    @include link_wrapper();
 }
