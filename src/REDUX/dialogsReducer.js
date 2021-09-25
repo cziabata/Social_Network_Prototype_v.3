@@ -1,4 +1,4 @@
-let dialogsReducer = (action, state) => {
+/*let dialogsReducer = (action, state) => {
     switch(action.type) {
         case 1:
             return state;
@@ -7,4 +7,4 @@ let dialogsReducer = (action, state) => {
     }
 }
 
-export default dialogsReducer;
+export default dialogsReducer;*/

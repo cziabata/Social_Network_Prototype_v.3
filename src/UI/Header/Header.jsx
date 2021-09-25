@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
 import Icon from '@material-ui/core/Icon';
 
-export const Header = () => {
+export const Header = (props) => {
     return (
         <>
             <header className={styles.header}>
@@ -13,9 +13,12 @@ export const Header = () => {
                     </NavLink>
                 </div>
                 <div>
-                    <NavLink to={"/login"}>
+                    {props.isAuth 
+                    ? props.login 
+                    : <NavLink to={"/login"}>
                         <div className={styles.link_wrapper}><div><Icon>login</Icon></div><div>Login</div></div>
-                    </NavLink>
+                      </NavLink>
+                    }
                 </div>
             </header>
         </>

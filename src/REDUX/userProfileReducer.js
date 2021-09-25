@@ -1,4 +1,4 @@
-let userProfileReducer = (action, state) => {
+/*let userProfileReducer = (action, state) => {
     switch(action.type) {
         case 1:
             return state;
@@ -7,4 +7,4 @@ let userProfileReducer = (action, state) => {
     }
 }
 
-export default userProfileReducer;
+export default userProfileReducer;*/

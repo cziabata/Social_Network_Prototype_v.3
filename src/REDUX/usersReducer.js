@@ -1,4 +1,4 @@
-let usersReducer = (action, state) => {
+/*let usersReducer = (action, state) => {
     switch(action.type) {
         case 1:
             return state;
@@ -7,4 +7,4 @@ let usersReducer = (action, state) => {
     }
 }
 
-export default usersReducer;
+export default usersReducer;*/
