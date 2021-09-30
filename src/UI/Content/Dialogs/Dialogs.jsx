@@ -18,14 +18,17 @@ let AddMessageForm = props => {
 
 let AddMessageFormRedux = reduxForm({form: "dialogsAddMessageForm"})(AddMessageForm)
 
-export const Dialogs = () => {
+export const Dialogs = (props) => {
     let onSubmit = values => {
-        console.log(values)
+        props.addMessage(values.newMessageBody)
     }
     return(
         <>
             Dialogs
             <AddMessageFormRedux onSubmit={onSubmit}/>
+            <div>
+                {props.myMessages}
+            </div>
         </>
     )
 }

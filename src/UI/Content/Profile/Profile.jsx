@@ -12,7 +12,7 @@ let AddNewPostForm = props => {
                    placeholder="Enter your message"
                    validate={[required, maxLength10]}/>
             <div>
-                <button>Send Message</button>
+                <button>Send</button>
             </div>
         </form>
     )
@@ -20,9 +20,9 @@ let AddNewPostForm = props => {
 
 let AddNewPostFormRedux = reduxForm({form: "profileAddNewPostForm"})(AddNewPostForm)
 
-export const Profile = () => {
+export const Profile = (props) => {
     let onSubmit = values => {
-        console.log(values)
+        props.addPost(values.newPostBody)
     }
     return (
         <>
@@ -36,8 +36,7 @@ export const Profile = () => {
                 <AddNewPostFormRedux onSubmit={onSubmit} />
             </div>
             <div>
-                <img src={""} alt={"user"} />
-                <span>Post Message</span>
+                {props.myPosts}
             </div>
         </>
     )
