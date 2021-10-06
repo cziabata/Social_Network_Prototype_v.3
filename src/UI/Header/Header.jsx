@@ -14,7 +14,7 @@ export const Header = (props) => {
                 </div>
                 <div>
                     {props.isAuth 
-                    ? props.login 
+                    ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
                     : <NavLink to={"/login"}>
                         <div className={styles.link_wrapper}><div><Icon>login</Icon></div><div>Login</div></div>
                       </NavLink>

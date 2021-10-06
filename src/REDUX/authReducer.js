@@ -30,5 +30,17 @@ export const getAuthData = () => async (dispatch) => {
         dispatch(setAuthData(id, email, login, true));
     }
 }
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe);
+    if(response.data.resultCode === 0) {
+        dispatch(getAuthData());
+    }
+}
+export const logout = () => async (dispatch) => {
+    let response = await authAPI.logout();
+    if(response.data.resultCode === 0) {
+        dispatch(setAuthData(null, null, null, false));
+    }
+}
 
 export default authReducer;
