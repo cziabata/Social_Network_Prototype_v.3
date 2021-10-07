@@ -1,6 +1,7 @@
 @import "../../SCSS/mixins.scss";
 .header {
     grid-area: header;
+    padding: 5px;
     @include border_style();
     display: flex;
     justify-content: space-between

@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { required, maxLengthCreator } from "../Utils/validators";
 import { Input } from "../Utils/formControls/formControls";
 import { Redirect } from "react-router";
+import styles from "../Utils/formControls/formControls.module.scss";
 
 let maxLength20 = maxLengthCreator(30)
 
@@ -11,13 +12,19 @@ let LoginForm = props => {
     return (
             <form onSubmit={handleSubmit}>
                 <div>
-                    <Field name="email" component={Input} type="text" validate={[required, maxLength20]} />
+                    <span>Email:</span><Field name="email" component={Input} type="text" 
+                                              placeholder="Enter your email" validate={[required, maxLength20]} />
                 </div>
                 <div>
-                    <Field name="password" component={Input} type="text" validate={[required, maxLength20]}/>
+                    <span>Password:</span><Field name="password" component={Input} 
+                                                 placeholder="Enter your password" type="text" 
+                                                 validate={[required, maxLength20]}/>
                 </div>
                 <div>
-                    <Field name="rememberMe" component={Input} type="checkbox" validate={[required]}/>
+                    <span>Remember me:</span><Field name="rememberMe" component={Input} type="checkbox" validate={[required]}/>
+                </div>
+                <div>
+                    {props.error && <div className={styles.commonError}>{props.error}</div>}
                 </div>
                 <div>
                     <button type="submit">Login</button>
