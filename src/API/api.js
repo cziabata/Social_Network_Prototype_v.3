@@ -19,5 +19,10 @@ export let authAPI = {
         return instance.delete(`/auth/login`);
     }
 }
+export let profileAPI = {
+    updateStatus(status) {
+        return instance.put(`/profile/status`, {status: status})
+    }
+}
 
 

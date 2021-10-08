@@ -2,6 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../Utils/formControls/formControls";
 import { required, maxLengthCreator } from "../../Utils/validators";
+import { ProfileStatus } from "./ProfileStatus";
 
 let maxLength10 = maxLengthCreator(10);
 let AddNewPostForm = props => {
@@ -26,9 +27,7 @@ export const Profile = (props) => {
     }
     return (
         <>
-            <div>
-                ava + description
-            </div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             <div>
                 My Posts
             </div>
