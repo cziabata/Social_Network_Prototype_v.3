@@ -4,7 +4,7 @@ import styles from "./Content.module.scss"
 import ProfileContainer from "../Content/Profile/ProfileContainer";
 import { UserProfileContainer } from "../Content/UserProfile/UserProfileContainer";
 import DialogsContainer from "../Content/Dialogs/DialogsContainer";
-import { UsersContainer } from "../Content/Users/UsersContainer";
+import UsersContainer from "../Content/Users/UsersContainer";
 import LoginContainer from "../Login/LoginContainer";
 export const Content = () => {
     return (

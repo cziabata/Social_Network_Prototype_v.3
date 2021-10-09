@@ -1,9 +1,9 @@
 import React from "react";
-export const Users = () => {
+export const Users = (props) => {
     return (
         <>
             <div>
-                Users
+                {props.users}
             </div>
         </>
     )

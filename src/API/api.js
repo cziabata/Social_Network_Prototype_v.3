@@ -24,5 +24,10 @@ export let profileAPI = {
         return instance.put(`/profile/status`, {status: status})
     }
 }
+export let usersAPI = {
+    getUsers(pageSize, currentPage) {
+        return instance.get(`/users?count=${pageSize}&page=${currentPage}`).then( response => { return response.data });
+    }
+}
 
 
