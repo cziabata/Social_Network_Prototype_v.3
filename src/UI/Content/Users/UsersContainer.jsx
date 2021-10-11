@@ -18,7 +18,8 @@ class UsersContainer extends React.Component {
             <>
                 <Users users={users} totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
-                       onPageChanged={this.onPageChanged}/>
+                       onPageChanged={this.onPageChanged}
+                       portionSize={this.props.portionSize}/>
             </>
         )
     }
@@ -29,6 +30,7 @@ let mapStateToProps = (state) => {
         currentPage: state.usersReducer.currentPage,
         users: state.usersReducer.users,
         totalUsersCount: state.usersReducer.totalUsersCount,
+        portionSize: state.usersReducer.portionSize,
     }
 }
 export default connect(mapStateToProps, {getUsers, onPageChanged})(UsersContainer)

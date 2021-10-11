@@ -5,7 +5,7 @@ export const Users = (props) => {
         <>
             <div>
                 <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
-                           onPageChanged={props.onPageChanged}/>
+                           onPageChanged={props.onPageChanged} portionSize={props.portionSize}/>
                 {props.users}
             </div>
         </>
