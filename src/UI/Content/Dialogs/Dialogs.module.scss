@@ -1,0 +1,4 @@
+@import "../../../SCSS/mixins.scss";
+.user_photo {
+    @include user_avatar;
+}
