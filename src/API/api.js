@@ -27,6 +27,12 @@ export let profileAPI = {
 export let usersAPI = {
     getUsers(pageSize, currentPage) {
         return instance.get(`/users?count=${pageSize}&page=${currentPage}`).then( response => { return response.data });
+    },
+    follow(userId) {
+        return instance.post(`/follow/${userId}`)
+    },
+    unfollow(userId) {
+        return instance.delete(`/follow/${userId}`)
     }
 }
 

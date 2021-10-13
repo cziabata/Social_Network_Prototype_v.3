@@ -1,6 +1,6 @@
 import React from "react";
 import { Users } from "../Users/Users";
-import { getUsers, onPageChanged } from "../../../REDUX/usersReducer";
+import { getUsers, onPageChanged, follow, unfollow } from "../../../REDUX/usersReducer";
 import { connect } from "react-redux";
 import user_photo from "../../Utils/img/user_img.jpg";
 import styles from './Users.module.scss';
@@ -20,14 +20,17 @@ class UsersContainer extends React.Component {
             </div>
             <div>{user.name}</div>
             <div><span>User status: </span>{user.status ? user.status : "Status is empty"}</div>
-            <button>Follow</button>
+            { user.followed 
+                ? <button onClick={()=>{this.props.unfollow(user.id)}}>Unfollow</button>
+                : <button onClick={()=>{this.props.follow(user.id)}}>Follow</button>}
         </div> )
         return(
             <>
                 <Users users={users} totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        onPageChanged={this.onPageChanged}
-                       portionSize={this.props.portionSize}/>
+                       portionSize={this.props.portionSize}
+                />
             </>
         )
     }
@@ -41,4 +44,4 @@ let mapStateToProps = (state) => {
         portionSize: state.usersReducer.portionSize,
     }
 }
-export default connect(mapStateToProps, {getUsers, onPageChanged})(UsersContainer)
+export default connect(mapStateToProps, {getUsers, onPageChanged, follow, unfollow})(UsersContainer)

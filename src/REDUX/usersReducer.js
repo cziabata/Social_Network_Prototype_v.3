@@ -3,6 +3,8 @@ import { usersAPI } from "../API/api";
 const SET_USERS = "usersReducer/SET_USERS";
 const SET_TOTAL_USERS_COUNT = "usersReducer/SET_TOTAL_USERS_COUNT";
 const SET_CURRENT_PAGE = "usersReducer/SET_CURRENT_PAGE";
+const FOLLOW = "usersReducer/FOLLOW";
+const UNFOLLOW = "usersReducer/UNFOLLOW";
 
 let initialState = {
     users: [],
@@ -29,6 +31,26 @@ let usersReducer = (state=initialState, action) => {
                 ...state,
                 currentPage: action.page
             }
+        case FOLLOW:
+            return {
+                ...state,
+                users: state.users.map( user => {
+                    if(user.id === action.id) {
+                        return { ...user, followed: true}
+                    }
+                    return user;
+                })
+            }
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map( user => {
+                    if(user.id === action.id) {
+                        return {...user, followed: false}
+                    }
+                    return user;
+                })
+            }
         default:
             return state;
     }
@@ -37,6 +59,8 @@ let usersReducer = (state=initialState, action) => {
 let setUsers = (users) => ({type: SET_USERS, users});
 let setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 let setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
+let followUser = (id) => ({type: FOLLOW, id});
+let unfollowUser = (id) => ({type: UNFOLLOW, id});
 
 export const getUsers = (pageSize, currentPage) => async (dispatch) => {
     let data = await usersAPI.getUsers(pageSize, currentPage);
@@ -48,6 +72,18 @@ export const onPageChanged = (pageSize, page) => async (dispatch) => {
     let data = await usersAPI.getUsers(pageSize, page);
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
+}
+export const follow = (id) => async (dispatch) => {
+    let response = await usersAPI.follow(id);
+    if(response.data.resultCode === 0) {
+        dispatch(followUser(id));
+    }
+}
+export const unfollow = (id) => async (dispatch) => {
+    let response = await usersAPI.unfollow(id);
+    if(response.data.resultCode === 0) {
+        dispatch(unfollowUser(id));
+    }
 }
 
 export default usersReducer;
