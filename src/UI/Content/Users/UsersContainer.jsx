@@ -21,8 +21,10 @@ class UsersContainer extends React.Component {
             <div>{user.name}</div>
             <div><span>User status: </span>{user.status ? user.status : "Status is empty"}</div>
             { user.followed 
-                ? <button onClick={()=>{this.props.unfollow(user.id)}}>Unfollow</button>
-                : <button onClick={()=>{this.props.follow(user.id)}}>Follow</button>}
+                ? <button disabled={this.props.followingInProgress.some( id => id === user.id)} 
+                          onClick={()=>{this.props.unfollow(user.id)}}>Unfollow</button>
+                : <button disabled={this.props.followingInProgress.some( id => id === user.id)}
+                          onClick={()=>{this.props.follow(user.id)}}>Follow</button>}
         </div> )
         return(
             <>
@@ -42,6 +44,7 @@ let mapStateToProps = (state) => {
         users: state.usersReducer.users,
         totalUsersCount: state.usersReducer.totalUsersCount,
         portionSize: state.usersReducer.portionSize,
+        followingInProgress: state.usersReducer.followingInProgress,
     }
 }
 export default connect(mapStateToProps, {getUsers, onPageChanged, follow, unfollow})(UsersContainer)
