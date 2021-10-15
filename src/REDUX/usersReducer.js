@@ -12,7 +12,7 @@ let initialState = {
     pageSize: 20,
     totalUsersCount: 0,
     currentPage: 1,
-    portionSize: 10,
+    portionSize: 20,
     followingInProgress: [],
 }
 

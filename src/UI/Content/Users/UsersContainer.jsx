@@ -4,6 +4,7 @@ import { getUsers, onPageChanged, follow, unfollow } from "../../../REDUX/usersR
 import { connect } from "react-redux";
 import user_photo from "../../Utils/img/user_img.jpg";
 import styles from './Users.module.scss';
+import { NavLink } from "react-router-dom";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -15,7 +16,9 @@ class UsersContainer extends React.Component {
     render(){
         let users = this.props.users.map( user => <div id={user.id} className={styles.user}>
             <div>
-                <img src={user.photos.large || user_photo} alt="user_photo" className={styles.user_photo}/>
+                <NavLink to={"/profile/" + user.id}>
+                    <img src={user.photos.large || user_photo} alt="user_photo" className={styles.user_photo}/>
+                </NavLink>
                 <span>User id: </span>{user.id}
             </div>
             <div>{user.name}</div>

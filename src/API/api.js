@@ -33,6 +33,9 @@ export let usersAPI = {
     },
     unfollow(userId) {
         return instance.delete(`/follow/${userId}`)
+    },
+    getUserProfile(userId) {
+        return instance.get(`/profile/${userId}`)
     }
 }
 
