@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addMessage } from "../../../REDUX/dialogsReducer";
 import user_img from "../../Utils/img/user_img.jpg";
 import styles from "./Dialogs.module.scss";
+import { Redirect } from "react-router";
 
 class DialogsContainer extends React.Component {
     render() {
@@ -13,6 +14,9 @@ class DialogsContainer extends React.Component {
                     <span>{message}</span>
                 </div>
             )
+        if(!this.props.isAuth) {
+            return <Redirect to="/login"/>
+        }
         return (
             <>
                 <Dialogs addMessage={this.props.addMessage} myMessages={myMessages}/>
@@ -23,7 +27,8 @@ class DialogsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return({
-        messages: state.dialogsReducer.messages
+        messages: state.dialogsReducer.messages,
+        isAuth: state.authReducer.isAuth,
     })
 }
 export default connect(mapStateToProps, {addMessage})(DialogsContainer);
