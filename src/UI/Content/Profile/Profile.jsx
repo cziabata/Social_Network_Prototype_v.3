@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../Utils/formControls/formControls";
 import { required, maxLengthCreator } from "../../Utils/validators";
 import { ProfileStatus } from "./ProfileStatus";
+import { Preloader } from "../../Utils/Preloader";
 
 let maxLength10 = maxLengthCreator(10);
 let AddNewPostForm = props => {
@@ -25,6 +26,9 @@ export const Profile = (props) => {
     let onSubmit = values => {
         props.addPost(values.newPostBody)
     }
+    if(!props.myProfile) {
+        return <Preloader />
+    }
     return (
         <>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
@@ -34,6 +38,9 @@ export const Profile = (props) => {
             <div>
                 <AddNewPostFormRedux onSubmit={onSubmit} />
             </div>
+            <div>
+                <img src={props.myProfile.photos.large} src=" " />
+            </div> 
             <div>
                 {props.myPosts}
             </div>
