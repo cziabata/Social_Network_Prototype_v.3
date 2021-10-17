@@ -39,7 +39,8 @@ export const Profile = (props) => {
                 <AddNewPostFormRedux onSubmit={onSubmit} />
             </div>
             <div>
-                <img src={props.myProfile.photos.large} src=" " />
+                <img src={props.myProfile.photos.large} alt=" " />
+                <input type="file" />
             </div> 
             <div>
                 {props.myPosts}

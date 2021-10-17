@@ -1,13 +1,13 @@
 import React from "react";
 import { Profile } from "../Profile/Profile";
 import { connect } from "react-redux";
-import { addPost, updateStatus, setMyProfile } from "../../../REDUX/profileReducer";
+import { addPost, updateStatus, setMyProfile} from "../../../REDUX/profileReducer";
 import user_img from "../../Utils/img/user_img.jpg";
 import styles from "./ProfileContainer.module.scss";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.props.setMyProfile(1049)
+        this.props.setMyProfile(9786)
     }
     render() {
         let myPosts = this.props.posts.map(post => 
@@ -27,12 +27,12 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    debugger
     return ({
         posts: state.profileReducer.posts,
         status: state.profileReducer.status,
         myId: state.authReducer.id,
-        myProfile: state.profileReducer.myProfile,
+        myProfile: state.profileReducer.profile,
     })
 }
-
 export default connect(mapStateToProps, {addPost, updateStatus, setMyProfile})(ProfileContainer)

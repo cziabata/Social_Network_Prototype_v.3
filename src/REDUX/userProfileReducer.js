@@ -21,6 +21,7 @@ let setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 
 export let getUserProfile = (userId) => async (dispatch) => {
     let response = await usersAPI.getUserProfile(userId);
+    debugger
     dispatch(setUserProfile(response.data))
 }
 

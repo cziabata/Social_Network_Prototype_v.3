@@ -16,12 +16,12 @@ export let authAPI = {
         return instance.post(`/auth/login`, {email, password, rememberMe});
     },
     logout(){
-        return instance.delete(`/auth/login`);
+        return instance.delete(`auth/login`);
     }
 }
 export let profileAPI = {
     updateStatus(status) {
-        return instance.put(`/profile/status`, {status: status})
+        return instance.put(`profile/status`, {status: status})
     },
     updatePhoto(photo) {
         let formData = new FormData();
@@ -33,7 +33,7 @@ export let profileAPI = {
         })
     },
     getMyProfile(userId) {
-        return instance.get(`/profile/${userId}`)
+        return instance.get(`profile/${userId}`)
     }
 }
 export let usersAPI = {
