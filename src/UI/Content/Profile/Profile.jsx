@@ -29,6 +29,11 @@ export const Profile = (props) => {
     if(!props.myProfile) {
         return <Preloader />
     }
+    let onPhotoChange = (event) => {
+        if(event.target.files.length) {
+            props.updatePhoto(event.target.files[0])
+        }
+    }
     return (
         <>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
@@ -40,7 +45,7 @@ export const Profile = (props) => {
             </div>
             <div>
                 <img src={props.myProfile.photos.large} alt=" " />
-                <input type="file" />
+                <input type="file" onChange={onPhotoChange}/>
             </div> 
             <div>
                 {props.myPosts}

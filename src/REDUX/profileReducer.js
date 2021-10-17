@@ -43,7 +43,7 @@ export const setMyProfile = (id) => async (dispatch) => {
 export const updatePhoto = (photo) => async (dispatch) => {
     let response = await profileAPI.updatePhoto(photo);
     if(response.resultCode ===0) {
-        dispatch(updatePhotoSucces(response.data.data))
+        dispatch(updatePhotoSucces(response.data.data.photos))
     }
 }
 
