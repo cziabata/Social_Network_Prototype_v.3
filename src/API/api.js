@@ -34,6 +34,9 @@ export let profileAPI = {
     },
     getMyProfile(userId) {
         return instance.get(`profile/${userId}`)
+    },
+    saveProfileData(profile) {
+        return instance.put(`profile`, profile)
     }
 }
 export let usersAPI = {

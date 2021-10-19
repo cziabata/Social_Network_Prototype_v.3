@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../Utils/formControls/formControls";
 import { required, maxLengthCreator } from "../../Utils/validators";
 import { ProfileStatus } from "./ProfileStatus";
 import { Preloader } from "../../Utils/Preloader";
+import { ProfileDataReduxForm } from "./ProfileDataForm";
 
 let maxLength10 = maxLengthCreator(10);
 let AddNewPostForm = props => {
@@ -20,9 +21,13 @@ let AddNewPostForm = props => {
     )
 }
 
-let AddNewPostFormRedux = reduxForm({form: "profileAddNewPostForm"})(AddNewPostForm)
+let AddNewPostFormRedux = reduxForm({form: "profileAddNewPostForm"})(AddNewPostForm);
+
+
 
 export const Profile = (props) => {
+    let [editeMode, setEditeMode] = useState(false);
+
     let onSubmit = values => {
         props.addPost(values.newPostBody)
     }
@@ -34,6 +39,9 @@ export const Profile = (props) => {
             props.updatePhoto(event.target.files[0])
         }
     }
+    let saveProfileData = (values) => {
+        props.saveProfileData(values).then(()=>setEditeMode(false))
+    }
     return (
         <>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
@@ -44,7 +52,9 @@ export const Profile = (props) => {
                 <AddNewPostFormRedux onSubmit={onSubmit} />
             </div>
             <div>
-                <ProfileInfo onPhotoChange={onPhotoChange} myProfile={props.myProfile}/>
+                {editeMode 
+                    ? <ProfileDataReduxForm initialValues={props.myProfile} onSubmit={saveProfileData} profile={props.myProfile}/> 
+                    : <ProfileInfo onPhotoChange={onPhotoChange} myProfile={props.myProfile} setEditeMode={setEditeMode}/> }
             </div> 
             <div>
                 {props.myPosts}
@@ -58,6 +68,7 @@ let ProfileInfo = (props) => {
         <>
             <img src={props.myProfile.photos.large} alt=" " />
             <input type="file" onChange={props.onPhotoChange}/>
+            <div><button onClick={()=>props.setEditeMode(true)}>Edite Profile</button></div>
             <div>
                 <b>Looking For A Job: </b>{props.myProfile.lookingForAJob || "No"}
             </div>
@@ -66,6 +77,9 @@ let ProfileInfo = (props) => {
             </div>
             <div>
                 <b>Full Name: </b>{props.myProfile.fullName || "No"}
+            </div>
+            <div>
+                <b>About Me: </b>{props.myProfile.aboutMe}
             </div>
             <div>
                 <b>Contacts: </b> {Object.keys(props.myProfile.contacts).map( key => {

@@ -46,5 +46,10 @@ export const updatePhoto = (photo) => async (dispatch) => {
         dispatch(updatePhotoSucces(response.data.data.photos))
     }
 }
+export const saveProfileData = (profile) => async (dispatch, getState) => {
+    let myId = getState().authReducer.id
+    await profileAPI.saveProfileData(profile);
+    dispatch(setMyProfile(myId))
+}
 
 export default profileReducer;
